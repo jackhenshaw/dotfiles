@@ -20,19 +20,14 @@ soup = BeautifulSoup(page.content, "html.parser")
 # find interested html element by looking for its id
 # - use web developer tools in browser to find what this is
 all_results = soup.find(id="main-content")
-numbers = all_results.find_all("span", {"itemprop": "QuantitativeValue"})
-changes = all_results.find_all("meta", {"itemprop": "QuantitativeValue"})
+numbers = all_results.find_all("span", {"class": "govuk-link--no-visited-state"})
+changes = all_results.find_all("strong", {"class": "govuk-!-margin-right-1"})
 
 # extract values from website
 positive  = numbers[0].text
-positiveChange = changes[10].get("content", None)
-deaths    = numbers[1].text
-deathsChange = changes[12].get("content", None)
-# - no longer used variables but may still be interesting
-#hospitals = numbers[2].text
-#hospitalsChange = changes[14].get("content", None)
-#tests     = numbers[3].text
-#testsChange = changes[16].get("content", None)
+positiveChange = changes[0].text
+deaths    = numbers[15].text
+deathsChange = changes[1].text
 
 # defining formatting of output
 down  = "⬇️  "
