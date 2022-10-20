@@ -91,6 +91,12 @@ augroup trimWhiteSpace
 augroup END
 " - Build cmake inside vim (Used in compiling my PhD thesis quickly)
 :command Make make && make clean
+" - remember folds (useful for when writing thesis, less good for vim sessions
+augroup remember_folds
+  autocmd!
+  au BufWinLeave ?* silent! mkview
+  au BufWinEnter ?* silent! loadview
+augroup END
 " }}}
 
 " Set this file to close all vim folds by default
