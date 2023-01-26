@@ -101,3 +101,7 @@ augroup END
 
 " Set this file to close all vim folds by default
 " vim:foldmethod=marker:foldlevel=0
+
+if (has("termguicolors"))
+  set termguicolors
+endif
