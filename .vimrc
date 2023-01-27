@@ -42,6 +42,8 @@ Plug 'airblade/vim-gitgutter'                                     " git in sideb
 Plug 'luochen1990/rainbow'                                        " rainbow brackets to help in nested loops
 Plug 'inkarkat/vim-ingo-library' | Plug 'inkarkat/vim-SpellCheck' " quickfix list for spelling mistakes
 Plug 'wakatime/vim-wakatime'                                      " Measures how long I spend coding
+Plug 'junegunn/goyo.vim'                                          " clears all visual clutter
+Plug 'junegunn/limelight.vim'                                     " highlights only current paragraph
 if v:version >= 800
   Plug 'sirver/ultisnips'                                         " shortcuts for code snippets
   Plug 'ycm-core/YouCompleteMe'                                   " vim autocomplete
@@ -64,6 +66,14 @@ if has('siver/UltiSnips')
   let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
   let g:UltiSnipsSnippetDirectories=['UltiSnips','~/.vim/snippets.vim']
 endif
+"   - Writing mode
+" Writing configuration
+command WriteMode set tw=79 | set fo+=t | set wrap | Goyo 85 | echo "Write mode enabled."
+command WriteModeDisable set fo-=t | set nowrap | Goyo | echo "Write mode disabled."
+let g:limelight_conceal_ctermfg = 'gray'
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
 " }}}
 " Keyboard mappings {{{
 " - navigation
@@ -71,12 +81,18 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-" - Toggle spell check
-map <F5> :setlocal spell!<CR>
 " - Toggle NERDTree file viewer
 map <C-f> :NERDTreeToggle<CR>
+
+" - Toggle spell check
+map <F1> :setlocal spell!<CR>
 " - Map turning highlighting of words on and off
 map <F4> :set hlsearch! hlsearch?<CR>
+
+" - Enable and disable writing mode
+map <F5> :WriteMode <CR>
+map <esc> :WriteModeDisable <CR>
+
 " }}}
 " Custom functions {{{
 " - automatically trim trailing whitespace
