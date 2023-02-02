@@ -68,7 +68,7 @@ if has('siver/UltiSnips')
 endif
 "   - Writing mode
 " Writing configuration
-command WriteMode set tw=79 | set fo+=t | set wrap | Goyo 85 | echo "Write mode enabled."
+command WriteMode set tw=150 | set fo+=t | set wrap | Goyo 150 | echo "Write mode enabled."
 command WriteModeDisable set fo-=t | set nowrap | Goyo | echo "Write mode disabled."
 let g:limelight_conceal_ctermfg = 'gray'
 autocmd! User GoyoEnter Limelight
@@ -106,7 +106,7 @@ augroup trimWhiteSpace
   autocmd BufWritePre * : call TrimWhitespace()
 augroup END
 " - Build cmake inside vim (Used in compiling my PhD thesis quickly)
-:command Make make && make clean
+:command Make make
 " - remember folds (useful for when writing thesis, less good for vim sessions
 augroup remember_folds
   autocmd!
